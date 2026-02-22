@@ -1,0 +1,257 @@
+
+/* ── Page layout ── */
+.page-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Three.js canvas ── */
+.bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Reveal (scroll-triggered fade-up) ── */
+.reveal {
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal[data-visible="false"] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delay helpers — set via data-delay */
+.reveal[data-delay="1"]  { transition-delay: 0.06s; }
+.reveal[data-delay="2"]  { transition-delay: 0.12s; }
+.reveal[data-delay="3"]  { transition-delay: 0.18s; }
+.reveal[data-delay="4"]  { transition-delay: 0.24s; }
+.reveal[data-delay="5"]  { transition-delay: 0.30s; }
+.reveal[data-delay="6"]  { transition-delay: 0.36s; }
+
+/* ── Section wrappers ── */
+.section-inner {
+  padding: 5rem var(--section-pad);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.section--alt { background: var(--bg-2); padding: 0.1px 0; }
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border) 20%,
+    var(--border) 80%,
+    transparent
+  );
+  margin: 0;
+}
+
+/* ── Section header ── */
+.section-head           { margin-bottom: 2.5rem; }
+.section-head--center   { text-align: center; }
+
+.section-head__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.section-head__eyebrow-line {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.section-head__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.55rem, 3.5vw, 2.7rem);
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.15;
+  color: var(--text);
+}
+
+/* Gradient span on headings */
+.section-head__title .grad-text {
+  background: var(--grad-primary);
+}
+
+.section-head__sub {
+  margin-top: 0.65rem;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 540px;
+  line-height: 1.8;
+}
+
+.section-head--center .section-head__sub {
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Gradient text (webkit clip fix) ── */
+.grad-text {
+  background: var(--grad-primary);
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  will-change: background;
+  isolation: isolate;
+}
+
+/* ── Auto-fill responsive grid ── */
+/* JS only needs to set --grid-min for non-default sizes */
+.auto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: 1.15rem;
+}
+
+.auto-grid--min-240 { grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); }
+.auto-grid--min-200 { grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); }
+.auto-grid--min-280 { grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
+.auto-grid--min-290 { grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 1.4rem; }
+.auto-grid--min-210 { grid-template-columns: repeat(auto-fill, minmax(min(210px, 100%), 1fr)); }
+
+/* ── Button ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(0.82rem, 2vw, 0.9rem);
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease,
+              border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(79, 142, 247, 0.33);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+.btn--outline:hover { background: var(--accent-l); }
+
+.btn--ghost {
+  background: var(--surface);
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.btn--white {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.btn--ghost-inv {
+  background: rgba(255, 255, 255, 0.13);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* ── Card base (hover lift) ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--border-2);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+/* ── Tag / pill ── */
+.tag {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  padding: 0.18rem 0.55rem;
+  border-radius: 6px;
+  background: var(--bg-2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+/* ── Skill tag (variant with hover via parent .card:hover) ── */
+.skill-tag {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.7rem;
+  padding: 0.22rem 0.6rem;
+  border-radius: 20px;
+  background: var(--bg-2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover .skill-tag {
+  background: var(--accent-l);
+  color: var(--accent);
+  border-color: rgba(79, 142, 247, 0.33);
+}
+
+/* ── Icon box (data-accent="1..5" sets bg/color via CSS) ── */
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.icon-box[data-accent="1"] { background: var(--icon-bg-1); color: var(--accent);   }
+.icon-box[data-accent="2"] { background: var(--icon-bg-2); color: var(--accent-2); }
+.icon-box[data-accent="3"] { background: var(--icon-bg-3); color: var(--accent-3); }
+.icon-box[data-accent="4"] { background: var(--icon-bg-4); color: var(--accent-4); }
+.icon-box[data-accent="5"] { background: var(--icon-bg-5); color: var(--accent-5); }
+.icon-box[data-accent="6"] { background: var(--icon-bg-1); color: var(--accent);   }

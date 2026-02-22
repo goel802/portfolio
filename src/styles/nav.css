@@ -1,0 +1,219 @@
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 300;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.nav--scrolled { box-shadow: var(--shadow-md); }
+
+/* ── Brand ── */
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav__logo {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: var(--grad-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(79, 142, 247, 0.33);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.nav__brand:hover .nav__logo { transform: scale(1.05); }
+
+.nav__brand-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* ── Desktop link list ── */
+.nav__links {
+  display: flex;
+  gap: 0.1rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav__link {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 500;
+  padding: 0.4rem 0.72rem;
+  border-radius: 7px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav__link:hover { color: var(--accent); background: var(--accent-l); }
+
+.nav__hire {
+  display: block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 0.45rem 1.1rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(79, 142, 247, 0.33);
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+  margin-left: 0.35rem;
+}
+
+.nav__hire:hover { transform: translateY(-1px); }
+
+/* ── Controls (theme toggle + hamburger) ── */
+.nav__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.nav__theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.nav__theme-btn:hover {
+  transform: scale(1.12) rotate(15deg);
+  border-color: var(--accent);
+}
+
+.nav__hamburger {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 8px;
+  transition: border-color 0.2s ease;
+}
+
+.nav__hamburger-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--muted);
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+}
+
+.nav__hamburger--open .nav__hamburger-bar             { background: var(--accent); }
+.nav__hamburger--open .nav__hamburger-bar:nth-child(1){ transform: rotate(45deg)  translate(4px, 4px);  }
+.nav__hamburger--open .nav__hamburger-bar:nth-child(2){ transform: scaleX(0); opacity: 0; }
+.nav__hamburger--open .nav__hamburger-bar:nth-child(3){ transform: rotate(-45deg) translate(4px, -4px); }
+
+/* ── Mobile backdrop ── */
+.nav__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 298;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+}
+
+/* ── Mobile drawer ── */
+.nav__drawer {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0; right: 0;
+  z-index: 299;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-xl);
+  padding: 0.75rem 1.25rem 1.25rem;
+  animation: menuSlide 0.22s ease both;
+}
+
+.nav__drawer-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.nav__drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 500;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  transition: color 0.18s ease, background 0.18s ease;
+}
+
+.nav__drawer-link:hover { color: var(--accent); background: var(--accent-l); }
+
+.nav__drawer-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--grad-primary);
+  flex-shrink: 0;
+}
+
+.nav__drawer-hire {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 600;
+  padding: 0.9rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(79, 142, 247, 0.27);
+  margin-top: 0.75rem;
+}
+
+/* ── Responsive show/hide ── */
+@media (max-width: 900px)  { .desktop-nav   { display: none !important; } }
+@media (min-width: 901px)  { .nav__hamburger{ display: none !important; } }
