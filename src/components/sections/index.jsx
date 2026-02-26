@@ -88,7 +88,7 @@ export function About() {
           </div>
 
           <div className="about__ctas">
-            <Btn href="#"               label="📄 Download CV" variant="primary" />
+            <Btn href="https://drive.google.com/file/d/15j0X1qgBreXTQgNwqbq1JceeSck1LUs5/view?usp=sharing" label="📄 Download CV" variant="primary" />
             <Btn href={PROFILE.linkedin} label="LinkedIn ↗"   variant="outline" target="_blank" />
           </div>
         </Reveal>

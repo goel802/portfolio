@@ -8,7 +8,7 @@ export const PROFILE = {
   email: "ashugoel77777@gmail.com",
   phone: "+91 7015728314",
   linkedin: "https://www.linkedin.com/in/ashu-goel-noida/",
-  github: "https://github.com",
+  github: "https://github.com/goel802",
   status: "Open to Work",
   degree: "MCA — SRM University",
   languages: "Hindi, English",
